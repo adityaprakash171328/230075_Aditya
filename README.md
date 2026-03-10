@@ -2,8 +2,8 @@
 # 1. Description
 
 The cpp file contains code to parse and memory efficiently word index text files via the process of tokenization . It supports the following queries : 
-1. k most frequent words in a version the text file 
-2. frequency of a word in a version of the text file 
+1. K most frequent words in a version the text file 
+2. Frequency of a word in a version of the text file 
 3. Difference in frequency of a word in two versions of two text files
 
 # 2. Features
@@ -31,7 +31,7 @@ The implementation has been carried out keeping different salient features in mi
 To run the program, you first need to compile the source code using a standard C++ compiler. 
 
 Compile command:
-`g++ -O3 230618_mahir.cpp -o analyzer`
+`g++ -O 230075_Aditya.cpp -o analyzer`
 
 ### Command-Line Arguments
 
@@ -51,13 +51,13 @@ Compile command:
 # 5. Examples
 
 1. **Word query (single file):**
-`./analyzer --file dataset_v1.txt --version v1 --buffer 512 --query word --word error`
+`./analyzer --file dataset_v1.txt --version v1 --buffer 256 --query word --word error`
 
 2. **Top-K query (single file):**
-`./analyzer --file dataset_v1.txt --version v1 --buffer 512 --query top --top 10`
+`./analyzer --file dataset_v1.txt --version v1 --buffer 256 --query top --top 10`
 
 3. **Difference query (two files):**
-`./analyzer --file1 dataset_v1.txt --version1 v1 --file2 dataset_v2.txt --version2 v2 --buffer 512 --query diff --word error`
+`./analyzer --file1 dataset_v1.txt --version1 v1 --file2 dataset_v2.txt --version2 v2 --buffer 256 --query diff --word error`
 
 # 6. Expected Output
 
