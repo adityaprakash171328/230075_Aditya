@@ -49,12 +49,6 @@ Compile command:
 | **`DiffQuery`** | Calculates the frequency change of a word between two index versions. |
 
 ---
-# Constraints:
-1. The program runs on a fixed size buffer ( constant throughout execution ) ranging between 256 KB and 1024 KB depending on user's program execution . 
-2. The program handles token splits across boundaries .
-3. Each indexed file corresponds to a different version and maintains a separate index for each version .
-4. Memory usage increases only as the number of unique words increases.
-
 # THINGS WHICH ARE NOTED:
 1. All informational messages such as logs and execution timing are written to stderr, ensuring they remain separate from the actual query results printed to stdout.
 2. The buffer size must be within the range of 256 KB to 1024 KB. If a value outside this range is provided, the program will generate an error.
