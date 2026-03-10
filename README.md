@@ -1,65 +1,62 @@
-# 230075_Aditya
-# 1. Description
+# Memory-Efficient Versioned File Indexer
 
-The cpp file contains code to parse and memory efficiently word index text files via the process of tokenization . It supports the following queries : 
-1. K most frequent words in a version the text file 
-2. Frequency of a word in a version of the text file 
-3. Difference in frequency of a word in two versions of two text files
+CS253 Course - Programming Assignment C++
+Made By: 230075_Aditya
 
-# 2. Features
+# Project Description:
+This program processes one or more log files and builds an index that records each word along with how often it appears in different versions of the files. The files are read in chunks of a user-defined size so the entire file does not need to be loaded into memory at once. The collected word frequencies are stored in a version-based index, which allows users to perform queries and compare how often specific words appear across multiple file versions. The system supports three different types of queries for analyzing the indexed data.
 
-The implementation has been carried out keeping different salient features in mind . Particularly the following have been implemented to follow good practices :
+## How to Compile
 
-1. Object oriented programming using 7 user defined classes (e.g. FileBuffer , Tokenizer , QueryProcessor , VersionIndexing)
-2. Inheritance using one abstract class (QueryProcessor) and three derived classes (WordQuery , TopKQuery , DiffQuery). 
-3. Virtual function (processQuery) and dynamic dispatch display runtime polymorphism 
-4. Function overloading in frequency retrieval functions by defining using two different parameter lists 
-5. Exception handling using (try , catch , throw) to handle inappropriate inputs , file I/O errors and other issues .
-6. User defined template function (printResult) to print messages 
-7. Word level index that maps each unique word to the frequency of its occurrence . 
-8. Word is a contiguous sequence of alphanumeric characters . All words are taken to be case-insensitive for all purposes .
+Make sure you have GCC installed. On Windows with MinGW, run:
 
-# 3. Constraints
+    g++ -O2 -o analyzer 230075_Aditya.cpp -static-libgcc -static-libstdc++
 
-1. The program runs on a fixed size buffer ( constant throughout execution ) ranging between 256 KB and 1024 KB depending on user's program execution . 
-2. The program handles token splits across boundaries .
-3. Each indexed file corresponds to a different version and maintains a separate index for each version .
-4. Memory usage increases only as the number of unique words increases .
+The -static-libgcc -static-libstdc++ flags are needed on Windows so the executable does not depend on MinGW DLLs being in PATH.
 
-# 4. Execution 
+    g++ -O2 -o analyzer 230075_Aditya.cpp 
+
+ # Execution 
 
 To run the program, you first need to compile the source code using a standard C++ compiler. 
 
 Compile command:
-`g++ -O 230075_Aditya.cpp -o analyzer`
+`g++ -O3 230075_Aditya.cpp -o analyzer`
 
 ### Command-Line Arguments
 
-| Flag | Description |
-| :--- | :--- |
-| `--file <path>` | Path to input file (single-version queries) |
-| `--file1 <path>` | First input file (diff query) |
-| `--file2 <path>` | Second input file (diff query) |
-| `--version <name>` | Version identifier (single-version queries) |
-| `--version1 <name>` | First version identifier (diff query) |
-| `--version2 <name>` | Second version identifier (diff query) |
-| `--buffer <kb>` | Buffer size in kilobytes (256 to 1024) |
-| `--query <type>` | `word` \| `diff` \| `top` |
-| `--word <token>` | Word for word/diff queries |
-| `--top <k>` | Number of top results (top query) |
+--file        (word, top)  Path to the log file
+--file1       (diff)       Path to the first file
+--file2       (diff)       Path to the second file
+--version     (word, top)  Version label for the file
+--version1    (diff)       Version label for the first file
+--version2    (diff)       Version label for the second file
+--query       (all)        Query type: word / top / diff
+--word        (word, diff) The word to search for
+--top         (top)        How many top words to return
+--buffer      (all)        Buffer size in KB (256 to 1024, default 512)
 
-# 5. Examples
+## Project Structure
 
-1. **Word query (single file):**
-`./analyzer --file dataset_v1.txt --version v1 --buffer 256 --query word --word error`
+| Class Name | Primary Responsibility |
+| --- | --- |
+| **`VersionedIndex`** | Manages a versioned word-frequency map and provides lookup access. |
+| **`BufferedFileReader`** | Efficiently reads file data into memory using a fixed-size binary buffer. |
+| **`Tokenizer`** | Cleans raw text, handles word fragments, and populates the index. |
+| **`QueryProcessor`** | Provides an interface for executing different analytical operations. |
+| **`WordQuery`** | Retrieves and displays the frequency of a specific word in an index. |
+| **`TopKQuery`** | Identifies and displays the most frequent words in a given index. |
+| **`DiffQuery`** | Calculates the frequency change of a word between two index versions. |
 
-2. **Top-K query (single file):**
-`./analyzer --file dataset_v1.txt --version v1 --buffer 256 --query top --top 10`
+---
+# Constraints
 
-3. **Difference query (two files):**
-`./analyzer --file1 dataset_v1.txt --version1 v1 --file2 dataset_v2.txt --version2 v2 --buffer 256 --query diff --word error`
+1. The program runs on a fixed size buffer ( constant throughout execution ) ranging between 256 KB and 1024 KB depending on user's program execution . 
+2. The program handles token splits across boundaries .
+3. Each indexed file corresponds to a different version and maintains a separate index for each version .
+4. Memory usage increases only as the number of unique words increases.
 
-# 6. Expected Output
+# Expected Output
 
 The program outputs in the following format:
 * Version name(s)
