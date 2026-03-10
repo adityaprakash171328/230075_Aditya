@@ -24,17 +24,20 @@ Compile command:
 `g++ -O3 230075_Aditya.cpp -o analyzer`
 
 ### Command-Line Arguments
+| Argument     | Applicable Query | Explanation                                                                           |
+| ------------ | ---------------- | ------------------------------------------------------------------------------------- |
+| `--file`     | word, top        | Specifies the location of the log file that will be analyzed.                         |
+| `--file1`    | diff             | Indicates the path of the first file used for comparison.                             |
+| `--file2`    | diff             | Indicates the path of the second file used for comparison.                            |
+| `--version`  | word, top        | Provides a version identifier for the given file.                                     |
+| `--version1` | diff             | Assigns a version name to the first file in the comparison.                           |
+| `--version2` | diff             | Assigns a version name to the second file in the comparison.                          |
+| `--query`    | all              | Defines the type of operation to perform: `word`, `top`, or `diff`.                   |
+| `--word`     | word, diff       | Specifies the particular word whose frequency should be checked.                      |
+| `--top`      | top              | Determines how many of the most frequent words should be displayed.                   |
+| `--buffer`   | all              | Sets the buffer size in KB (must be between **256 and 1024**, default is **512 KB**). |
 
---file        (word, top)  Path to the log file
---file1       (diff)       Path to the first file
---file2       (diff)       Path to the second file
---version     (word, top)  Version label for the file
---version1    (diff)       Version label for the first file
---version2    (diff)       Version label for the second file
---query       (all)        Query type: word / top / diff
---word        (word, diff) The word to search for
---top         (top)        How many top words to return
---buffer      (all)        Buffer size in KB (256 to 1024, default 512)
+
 
 ## Project Structure
 
